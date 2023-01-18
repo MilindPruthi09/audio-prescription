@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Recorder</title>
+  </head>
+  <body>
+    <button id="start-recording-button">Start Recording</button>
+    <button id="stop-recording-button" disabled>Stop Recording</button>
+    <script>
+      let mediaRecorder;
+      let chunks = [];
+
+      // Get references to the start and stop recording buttons
+      const startRecordingButton = document.getElementById("start-recording-button");
+      const stopRecordingButton = document.getElementById("stop-recording-button");
+
+      // Start recording when the start recording button is clicked
+      startRecordingButton.addEventListener("click", () => {
+        // Create an audio context
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        // Get the audio stream
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(stream => {
+            // Initialize the media recorder
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+            // Enable the stop recording button
+            stopRecordingButton.disabled = false;
+            
+            mediaRecorder.ondataavailable = (event) => {
+              chunks.push(event.data);
+            };
+          })
+          .catch(error => console.error(error));
+      });
+
+      // Stop recording and download the audio when the stop recording button is clicked
+      stopRecordingButton.addEventListener("click", () => {
+        mediaRecorder.stop();
+        // Disable the stop recording button
+        stopRecordingButton.disabled = true;
+        // Concatenate the chunks
+        const blob = new Blob(chunks, { type: "audio/wav" });
+        chunks = [];
+        // Create a download link for the WAV file
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = "recording.wav";
+        downloadLink.innerHTML = "Download Recording";
+        // Add the download link to the page
+        document.body.appendChild(downloadLink);
+      });
+      
+
+      mediaRecorder.onstop = (event) => {
+    // Concatenate the chunks
+    const blob = new Blob(chunks, { type: "audio/wav" });
+    chunks = [];
+    // Create a download link for the WAV file
+    const downloadLink = document.createElement("a");
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = "recording.wav";
+    downloadLink.innerHTML = "Download Recording";
+    // Add the download link to the page
+    document.body.appendChild(downloadLink);
+};
+
+
+
+    </script>
+  </body>
+</html>
