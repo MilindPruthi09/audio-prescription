@@ -8,6 +8,8 @@ from pcmtotext import *
 import speech_recognition as sr
 import datetime
 from werkzeug.utils import secure_filename
+from notebook import *
+from MachineModel import *
 
 r = sr.Recognizer()
 
@@ -77,6 +79,29 @@ def symptoms():
     symptoms=symptoms.split()
     session['symptoms']=symptoms
     return redirect(url_for('result'))
+
+def get_symptoms():
+    firstpart()
+    with open('full_symptoms.txt', 'r') as file:
+        data = file.read()
+    data=data.replace(","," ")
+    data=data.split(" ")
+    split_data = [i.split("_") for i in data]
+    flat_data = [word for sublist in split_data for word in sublist]
+
+    useraudioraw = audioExtractSymptomsRaw()
+    debug=[]
+    for items in useraudioraw:
+        if items in flat_data:
+            debug.append(items)
+            
+    return debug
+
+@app.route('/DatasetSymptoms')
+def DatasetSymptoms():
+    datasymptoms=get_symptoms()
+    return datasymptoms
+
 
 @app.route('/result')
 def result():
