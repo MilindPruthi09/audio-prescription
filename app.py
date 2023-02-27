@@ -10,6 +10,7 @@ import datetime
 from werkzeug.utils import secure_filename
 from notebook import *
 from MachineModel import *
+from converttosimple import *
 
 r = sr.Recognizer()
 
@@ -89,12 +90,22 @@ def get_symptoms():
     split_data = [i.split("_") for i in data]
     flat_data = [word for sublist in split_data for word in sublist]
 
-    useraudioraw = audioExtractSymptomsRaw()
+    lst=breakdown()
+    final_symptoms_breakdown=[]
+
+    for item in lst:
+        sent=''.join(item)
+        useraudioraw = audioExtractSymptomsRaw(sent)
+        final_symptoms_breakdown.append(useraudioraw)
+
     debug=[]
-    for items in useraudioraw:
-        if items in flat_data:
-            debug.append(items)
-            
+    passer=""
+    for items in final_symptoms_breakdown:
+        for item in items:
+            if item in flat_data:
+                passer=passer+' '+item
+        debug.append(passer.strip().split(' '))
+        passer=''    
     return debug
 
 @app.route('/DatasetSymptoms')

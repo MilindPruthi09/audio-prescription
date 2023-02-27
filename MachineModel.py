@@ -1,13 +1,7 @@
 from textblob import TextBlob
 from nltk.corpus import stopwords
 
-def audioExtractSymptomsRaw():
-    sentence=''
-
-    with open("audioToText.txt",'r') as tfile:
-        sentence = tfile.read()
-
-
+def audioExtractSymptomsRaw(sentence):
     stop_words = set(stopwords.words('english'))
 
     blob = TextBlob(sentence)
@@ -18,8 +12,7 @@ def audioExtractSymptomsRaw():
             continue
         if pos in ["JJ", "IN", "NN","NNS","VBN"]:
             if i+1 < len(blob.tags) and blob.tags[i+1][1] == "NN":
-                if word + " " + blob.tags[i+1][0] not in symptoms:
-                    symptoms.append(word + "_" + blob.tags[i+1][0])
+                symptoms.append(word)
             else:
                 if word not in symptoms:
                     symptoms.append(word)
