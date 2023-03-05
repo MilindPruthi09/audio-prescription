@@ -236,6 +236,7 @@ def secondpart():
     ipt = [0 for i in range(len(features))]
     for s in symptoms:
         ipt[cols.index(s)]=1
+    print("-------------------------------------------------------------------------",len(ipt))
     ipt = np.array([ipt])
     print(ipt)
     print(dt.predict(ipt))

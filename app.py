@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 from notebook import *
 from MachineModel import *
 from converttosimple import *
+from full_symptoms_2D import *
 
 r = sr.Recognizer()
 
@@ -99,20 +100,27 @@ def get_symptoms():
         final_symptoms_breakdown.append(useraudioraw)
 
     debug=[]
-    passer=""
+    passer=''
     for items in final_symptoms_breakdown:
         for item in items:
             if item in flat_data:
                 passer=passer+' '+item
         debug.append(passer.strip().split(' '))
-        passer=''    
+        passer=''
+    
     return debug
 
-@app.route('/DatasetSymptoms')
-def DatasetSymptoms():
-    datasymptoms=get_symptoms()
-    return datasymptoms
-
+@app.route('/predict')
+def predict():
+    data_symptoms = get_symptoms()
+    final_Symptom_List_2D = utility()
+    count=[0 for _ in range(len(final_Symptom_List_2D))]
+    for j in data_symptoms:
+        if(j in final_Symptom_List_2D):
+            count[final_Symptom_List_2D.index(j)]=1
+        else:
+            pass
+    return count
 
 @app.route('/result')
 def result():
