@@ -125,11 +125,7 @@ def firstpart():
     data = pd.read_csv("./Model/Training.csv")
 
     symptoms_f=data.columns
-    with open("full_symptoms.txt",'w') as tfile:
-        for items in symptoms_f:
-            tfile.write(items+',')
 
-def secondpart():
     data = pd.read_csv("./Model/Training.csv")
     df = pd.DataFrame(data)
 
@@ -232,15 +228,13 @@ def secondpart():
 
     dt.predict_proba(sample_x)
 
-    symptoms = ['skin_rash','itching','nodal_skin_eruptions','increased_appetite','irritability']
-    ipt = [0 for i in range(len(features))]
-    for s in symptoms:
-        ipt[cols.index(s)]=1
-    print("-------------------------------------------------------------------------",len(ipt))
-    ipt = np.array([ipt])
-    print(ipt)
-    print(dt.predict(ipt))
-    dt.predict_proba(ipt)
+    with open("full_symptoms.txt",'w') as tfile:
+        for items in features:
+            tfile.write(items+',')
 
-firstpart()
-secondpart()
+    return dt
+
+def secondpart(dt,ipt):
+    spr=dt.predict(ipt)
+    spr2=dt.predict_proba(ipt)
+    return spr,spr2

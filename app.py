@@ -83,9 +83,18 @@ def symptoms():
     return redirect(url_for('result'))
 
 def get_symptoms():
-    firstpart()
+    model=firstpart()
     with open('full_symptoms.txt', 'r') as file:
         data = file.read()
+    data=data.replace("_ ","_")
+    data=data.replace(" _","_")
+    data=data.replace(" ","_")
+    with open('full_symptoms.txt', 'w') as file:
+        file.seek(0)
+        file.truncate()
+        file.write(data)
+    with open('full_symptoms.txt', 'r') as file:
+        data = file.read()  
     data=data.replace(","," ")
     data=data.split(" ")
     split_data = [i.split("_") for i in data]
@@ -108,11 +117,11 @@ def get_symptoms():
         debug.append(passer.strip().split(' '))
         passer=''
     
-    return debug
+    return debug,model
 
 @app.route('/predict')
 def predict():
-    data_symptoms = get_symptoms()
+    data_symptoms,model = get_symptoms()
     final_Symptom_List_2D = utility()
     count=[0 for _ in range(len(final_Symptom_List_2D))]
     for j in data_symptoms:
@@ -120,7 +129,8 @@ def predict():
             count[final_Symptom_List_2D.index(j)]=1
         else:
             pass
-    return count
+    restitute=secondpart(model,[count])
+    return str(restitute)
 
 @app.route('/result')
 def result():

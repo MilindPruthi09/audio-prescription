@@ -10,7 +10,6 @@ def utility():
         items=item.split("_")
         ls.append(list(filter(None, items)))
     newList = list(filter(None, ls))
-    print('-----------------------',len(newList))
     return newList
 
 utility()

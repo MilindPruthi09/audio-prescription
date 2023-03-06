@@ -2,7 +2,7 @@ def breakdown():
     with open("audioToText.txt",'r') as tfile:
             sentence = tfile.read()
     lst=[]
-    sentence=sentence.split('. ')
+    sentence=sentence.split(". ")
     for sentences in sentence:
             if('and' in sentences):
                   p=sentences.split(' and ')
