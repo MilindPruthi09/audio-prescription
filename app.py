@@ -58,7 +58,7 @@ def audioRecog():
     print('Please wait while the audio gets transcribed. This process may take up to a minute.')
     output=codecChange(path)
     session['output']=output
-    return redirect(url_for('speechToTextTransform'))
+    return redirect(url_for('predict'))
 
 @app.route('/speechToTextTransform', methods=['GET','POST'])
 def speechToTextTransform():
@@ -130,7 +130,7 @@ def predict():
         else:
             pass
     restitute=secondpart(model,[count])
-    return str(restitute)
+    return data_symptoms
 
 @app.route('/result')
 def result():

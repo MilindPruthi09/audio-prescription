@@ -13,5 +13,3 @@ def speechToText(output):
     print(text)
 
     return text
-# fileName="sample_output.wav"
-# speechToText(fileName)
