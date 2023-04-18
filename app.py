@@ -130,7 +130,7 @@ def predict():
         else:
             pass
     restitute=secondpart(model,[count])
-    return data_symptoms
+    return str(restitute)
 
 @app.route('/result')
 def result():
