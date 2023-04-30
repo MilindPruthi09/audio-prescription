@@ -37,6 +37,15 @@
 body {
     margin: 0%;
     margin-top: -1.5%;
+    zoom: 100%;
+    touch-action: none;
+    -ms-touch-action: none;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-user-scalable: no;
+    -moz-user-scalable: no;
+    -ms-user-scalable: no;
 }
 
 h1 {
@@ -48,9 +57,11 @@ h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: lighter;
 }
-img{
+
+img {
     margin-left: 1%;
 }
+
 h3 {
     display: flex;
     font-family: 'Montserrat', sans-serif;
@@ -80,7 +91,7 @@ h3 {
 
 .pu {
     position: relative;
-    top:-2%;
+    top: -2%;
     height: 5vh;
     padding-top: 3%;
     border: 5px solid white;

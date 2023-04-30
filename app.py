@@ -12,6 +12,7 @@ from notebook import *
 from MachineModel import *
 from converttosimple import *
 from full_symptoms_2D import *
+from disease_description import disease_result
 
 r = sr.Recognizer()
 
@@ -22,7 +23,7 @@ app.secret_key = 'your_secret_key'
 db = MySQL(app);
 
 def executeQuery(query,values):
-	conn = mysql.connector.connect(user='root', password='BTWin123!', host='127.0.0.1', database='world')
+	conn = mysql.connector.connect(user='root', password='GeNeRaL@21', host='127.0.0.1', database='world')
 	cursor = conn.cursor()
 	cursor.execute(query, values)
 	conn.commit()
@@ -80,7 +81,7 @@ def symptoms():
         symptoms = f.read()
     symptoms=symptoms.split()
     session['symptoms']=symptoms
-    return redirect(url_for('result'))
+    return redirect(url_for('predict'))
 
 def get_symptoms():
     model=firstpart()
@@ -129,8 +130,9 @@ def predict():
             count[final_Symptom_List_2D.index(j)]=1
         else:
             pass
-    restitute=secondpart(model,[count])
-    return str(restitute)
+    restitute,probability=secondpart(model,[count])
+    #description=disease_result(restitute[0])
+    return render_template('result.html',variable=str(restitute[0]))
 
 @app.route('/result')
 def result():
