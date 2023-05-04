@@ -1,0 +1,139 @@
+.purple-div {
+    margin-left: 2%;
+    margin-top: 3%;
+    background-color: #360059;
+    max-width: 95%;
+    height: 15vh;
+    color: white;
+    vertical-align: 50%;
+    border: 5px solid white;
+    border-radius: 15px 30px 15px;
+}
+
+.fint {
+    display: inline;
+}
+
+.whole-document {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 1%;
+    top: 27%;
+    left: 51%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 60vh;
+    width: 90vh;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    background-color: #b2d1bc;
+    border: 5px solid #360059;
+    border-radius: 15px 30px 15px;
+    margin: 0%;
+}
+
+body {
+    margin: 0%;
+    margin-top: -1.5%;
+    zoom: 100%;
+    touch-action: none;
+    -ms-touch-action: none;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-user-scalable: no;
+    -moz-user-scalable: no;
+    -ms-user-scalable: no;
+}
+
+h1 {
+    max-width: 100vh;
+    max-height: 100vh;
+    position: absolute;
+    top: 5%;
+    left: 7%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+}
+
+img {
+    margin-left: 1%;
+}
+
+h3 {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    height: 25vh;
+    width: 40vh;
+    margin-top: 7%;
+    padding-top: 20%;
+    margin-left: -3%;
+    border: 5px solid white;
+    border-radius: 15px 30px 15px;
+    background-color: #360059;
+    color: white;
+    justify-content: center;
+}
+
+.form {
+    width: 40vh;
+    padding-top: 10%;
+    margin-left: 3%;
+    vertical-align: 50%;
+    border: 5px solid white;
+    border-radius: 15px 30px 15px;
+    background-color: #360059;
+    color: white;
+}
+
+.pu {
+    position: relative;
+    top: -2%;
+    height: 5vh;
+    padding-top: 3%;
+    border: 5px solid white;
+    border-radius: 15px 30px 15px;
+    background-color: #360059;
+    color: white;
+}
+
+html {
+    background-color: #b2d1bc;
+}
+
+button {
+    height: 15%;
+    width: 45%;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+}
+
+label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+}
+
+.BY {
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    top: 7.5%;
+    left: 70%;
+}
+
+.inline-div {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    height: 60vh;
+    width: 90vh;
+    margin-left: 2%;
+    border: 5px solid #360059;
+    padding: 1%;
+    border-radius: 15px 30px 15px;
+}
